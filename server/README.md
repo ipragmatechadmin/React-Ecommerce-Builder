@@ -62,7 +62,7 @@ An eCommerce platform for Node web APIs focused on separation of concerns and sc
 
 This platform have the basic web APIs for ecommerce app. The platform uses backend as my sql database but can be used for other platforms like firebase, dynamodb etc.  
 
-1. Download the source code file or clone it from [http://git.ipragmatech.com/ipragmatech/ecommerce-node](http://git.ipragmatech.com/ipragmatech/ecommerce-node).
+1. Download the source code file or clone it from [https://github.com/ipragmatechadmin/React-Ecommerce-Builder](https://github.com/ipragmatechadmin/React-Ecommerce-Builder).
 2. Setup the database on `config/database.js` with the MySQL database configurations.
 3. Install the dependencies with `yarn` (click here if [you don't have Yarn installed](https://yarnpkg.com/docs/install))
 4. Create the development and test databases you have setup on `config/database.js`

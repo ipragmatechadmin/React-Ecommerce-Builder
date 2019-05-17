@@ -2,13 +2,13 @@
 
 <!-- Logo -->
 <p align="center">
-  <a href="[http://git.ipragmatech.com/ipragmatech/react-ecommerce](http://git.ipragmatech.com/ipragmatech/react-ecommerce)">
+  <a href="[https://github.com/ipragmatechadmin/React-Ecommerce-Builder](https://github.com/ipragmatechadmin/React-Ecommerce-Builder)">
     <img height="128" width="160" src="https://www.ipragmatech.com/wp-content/uploads/2017/06/logo.png">
   </a>
 </p>
 <!-- Name -->
 <h1 align="center">
-  <a href="http://git.ipragmatech.com/ipragmatech/react-ecommerce">React Ecommerce</a>
+  <a href="https://github.com/ipragmatechadmin/React-Ecommerce-Builder">React Ecommerce</a>
 </h1>
 <br/>
 The React Ecommerce is a project relying on [React](https://facebook.github.io/react/docs/hello-world.html) a powerful javascript library for building the user interface. In this project, I tried to show some features of react/react components as a ecommerce platform.
@@ -41,7 +41,7 @@ and then install the package
 
 ### Installing
 
-1. Download the source code file or clone it from [http://git.ipragmatech.com/ipragmatech/react-ecommerce](http://git.ipragmatech.com/ipragmatech/react-ecommerce).
+1. Download the source code file or clone it from [https://github.com/ipragmatechadmin/React-Ecommerce-Builder](https://github.com/ipragmatechadmin/React-Ecommerce-Builder).
 
 2. Go to the project root directory
    ```bash

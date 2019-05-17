@@ -1,0 +1,1162 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a ecommerce project",
+    "version": "1.0.0",
+    "title": "iPragmatech Ecommerce",
+    "termsOfService": "",
+    "contact": {
+      "email": "kapil.jain@ipragmatech.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "ipragmatech-ecommmerce.herokuapp.com",
+  "basePath": "/api",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "product",
+      "description": "Everything about product in the store"
+    },
+    {
+      "name": "store",
+      "description": "Access to user's orders"
+    },
+    {
+      "name": "user",
+      "description": "Operations about user"
+    },
+    {
+      "name": "shipping",
+      "description": "Shipping information"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/product/": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Get all the products",
+        "description": "Return the list of products",
+        "operationId": "findAll",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number of the result. Default value is 1.",
+            "required": false,
+            "type": "number",
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "number of products in the result. Default value is 10.",
+            "required": false,
+            "type": "number",
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/product/findBySearchText": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Finds Products by Search term",
+        "description": "Return the list of products matching the search",
+        "operationId": "findBySearchText",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number of the result. Default value is 1.",
+            "required": false,
+            "type": "number",
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "number of products in the result. Default value is 10.",
+            "required": false,
+            "type": "number",
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/product/findByCategory": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Finds Products by category",
+        "description": "Find Products by category.",
+        "operationId": "findByCategory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Category Id of the products",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
+          },
+          "400": {
+            "description": "Category Id"
+          }
+        }
+      }
+    },
+    "/product/{productId}": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Get Product Specific to the Id",
+        "description": "Returns the details of the product",
+        "operationId": "findById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "ID of the product",
+            "required": true,
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "400": {
+            "description": "Product Id"
+          },
+          "404": {
+            "description": "Product Not Found"
+          }
+        }
+      }
+    },
+    "/product/getAttributes/{productId}": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Get Product Specific to the Id",
+        "description": "Returns the details of the product",
+        "operationId": "findAttributes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "ID of the product",
+            "required": true,
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ProductAttributes"
+            }
+          },
+          "400": {
+            "description": "Product Id"
+          },
+          "404": {
+            "description": "Product Not Found"
+          }
+        }
+      }
+    },
+    "/category": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Finds categories specific to department",
+        "description": "Find Products by category.",
+        "operationId": "findCategoriesByDepartment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "department",
+            "in": "query",
+            "description": "Department Id of the category",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          },
+          "400": {
+            "description": "Department Id"
+          }
+        }
+      }
+    },
+    "/department": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Finds departments in the system",
+        "description": "Find All departments.",
+        "operationId": "findDepartments",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Department"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Department"
+          }
+        }
+      }
+    },
+    "/store/order": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Place an order for a products",
+        "description": "",
+        "operationId": "placeOrder",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "order placed for purchasing the product",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        }
+      }
+    },
+    "/store/order/{orderId}": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Find purchase order by ID",
+        "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
+        "operationId": "getOrderById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "ID of order that needs to be fetched",
+            "required": true,
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Find purchase order by ID",
+        "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
+        "operationId": "updateOrderById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "ID of order that needs to be fetched",
+            "required": true,
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 1,
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update order with status",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrderStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      }
+    },
+    "/store/orderdetails/{orderId}": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Find purchase order details by ID",
+        "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
+        "operationId": "getOrderDetailsById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "ID of order details that needs to be fetched",
+            "required": true,
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OrderDetails"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      }
+    },
+    "/store/cart": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Add item to cart with default quantity as 1",
+        "description": "",
+        "operationId": "addToCart",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Add product in the cart",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          },
+          "400": {
+            "description": "Invalid Cart"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Get items from cart",
+        "description": "",
+        "operationId": "getCart",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cart"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Cart"
+          }
+        }
+      }
+    },
+    "/store/cart/:itemId": {
+      "put": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Update item to cart with quantity",
+        "description": "",
+        "operationId": "updateCart",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update product in the cart",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CartItemQuantity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          },
+          "400": {
+            "description": "Invalid Cart"
+          }
+        }
+      }
+    },
+    "/signup": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Signup a user in the system",
+        "description": "Signup user with information like email, name and password",
+        "operationId": "signup",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "500": {
+            "description": "User already exist or Internal server error"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object with email and password",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          },
+          "500": {
+            "description": "User already exist or Internal server error"
+          }
+        }
+      }
+    },
+    "/signout": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs out current logged in user session",
+        "description": "",
+        "operationId": "logoutUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "Logout successfully"
+          }
+        }
+      }
+    },
+    "/shipping/": {
+      "post": {
+        "tags": [
+          "shipping"
+        ],
+        "summary": "Add shipping information for the user",
+        "description": "",
+        "operationId": "addShippingInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Add shipping information for user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Shipping"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Shipping"
+            }
+          },
+          "400": {
+            "description": "Invalid Shipping"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "shipping"
+        ],
+        "summary": "Get shipping information for the user",
+        "description": "",
+        "operationId": "getShippingInfo",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Shipping"
+            }
+          },
+          "400": {
+            "description": "Invalid Shipping"
+          }
+        }
+      }
+    },
+    "/shipping/findShippingRates/{regionId}": {
+      "get": {
+        "tags": [
+          "shipping"
+        ],
+        "summary": "Find shipping rates by Region ID",
+        "description": "Find shipping rates by Region ID",
+        "operationId": "findShippingRates",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "regionId",
+            "in": "path",
+            "description": "ID of region that needs to be fetched",
+            "required": true,
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ShippingRates"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Shipping not found for the region"
+          }
+        }
+      }
+    },
+    "/shipping/findShippingRegion": {
+      "get": {
+        "tags": [
+          "shipping"
+        ],
+        "summary": "Find shipping regions",
+        "description": "Find shipping regions",
+        "operationId": "findShippingRegion",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ShippingRegion"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Shipping not found for the region"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CartOrder": {
+      "type": "object",
+      "properties": {
+        "cartId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "customerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "shippingId": {
+          "type": "integer"
+        },
+        "taxId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "customerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalAmount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shipDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "comments": {
+          "type": "string"
+        },
+        "authCode": {
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "shippingId": {
+          "type": "integer"
+        },
+        "taxId": {
+          "type": "integer"
+        }
+      }
+    },
+    "OrderDetails": {
+      "type": "object",
+      "properties": {
+        "itemId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "orderId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "unitCost": {
+          "type": "integer"
+        }
+      }
+    },
+    "OrderStatus": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "example": "Status 1 for success payment, 2 for cancel payment"
+        },
+        "comments": {
+          "type": "string"
+        },
+        "authCode": {
+          "type": "string",
+          "example": "PaymentId recieved from the payment gateway"
+        },
+        "reference": {
+          "type": "string",
+          "example": "Json Object received from the payment gateway"
+        }
+      }
+    },
+    "Cart": {
+      "type": "object",
+      "properties": {
+        "itemId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cartId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributes": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "buyNow": {
+          "type": "integer"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "CartItemQuantity": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "integer"
+        }
+      }
+    },
+    "Shipping": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "address1": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "postCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "shippingRegionId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ShippingRates": {
+      "type": "object",
+      "properties": {
+        "shippingId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "shippingType": {
+          "type": "string"
+        },
+        "shippingCost": {
+          "type": "number"
+        },
+        "shippingRegionId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ShippingRegion": {
+      "type": "object",
+      "properties": {
+        "shippingRegion": {
+          "type": "string"
+        },
+        "shippingRegionId": {
+          "type": "integer"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Department": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "departmentId": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Products": {
+      "type": "object",
+      "required": [
+        "products",
+        "pageCount",
+        "itemCount",
+        "limit",
+        "currentPage"
+      ],
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        },
+        "pageCount": {
+          "type": "number"
+        },
+        "itemCount": {
+          "type": "number"
+        },
+        "limit": {
+          "type": "number"
+        },
+        "currentPage": {
+          "type": "number"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "required": [
+        "name",
+        "description",
+        "price",
+        "discountedPrice",
+        "display"
+      ],
+      "properties": {
+        "productId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "Chartres Cathedral"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "discountedPrice": {
+          "type": "number"
+        },
+        "image": {
+          "type": "string"
+        },
+        "image2": {
+          "type": "string"
+        },
+        "thumbnail": {
+          "type": "string"
+        },
+        "display": {
+          "type": "integer"
+        }
+      }
+    },
+    "ProductAttributes": {
+      "type": "object",
+      "required": [
+        "attributes"
+      ],
+      "properties": {
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductAttribute"
+          }
+        }
+      }
+    },
+    "ProductAttribute": {
+      "type": "object",
+      "required": [
+        "name",
+        "attributeId",
+        "attributeValue"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Size"
+        },
+        "attributeId": {
+          "type": "number"
+        },
+        "attributeValue": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

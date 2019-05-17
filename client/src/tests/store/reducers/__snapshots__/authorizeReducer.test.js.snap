@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`authorize reducer should handle LOGIN 1`] = `
+Immutable.Map {
+  uid: "1",
+  authed: true,
+  isVerifide: true,
+  updatePassword: false,
+  guest: false,
+  displayName: undefined,
+  email: undefined,
+}
+`;
+
+exports[`authorize reducer should handle Logout 1`] = `
+Immutable.Map {
+  uid: 0,
+  authed: false,
+  isVerifide: false,
+  updatePassword: false,
+  guest: true,
+  logoutMessage: "User logout successfully1",
+  logoutStatus: true,
+}
+`;
+
+exports[`authorize reducer should handle SIGNUP 1`] = `
+Immutable.Map {
+  uid: "1",
+  authed: false,
+  isVerifide: false,
+  updatePassword: false,
+  guest: false,
+  displayName: undefined,
+  email: undefined,
+}
+`;
+
+exports[`authorize reducer should return the initial state 1`] = `
+Immutable.Map {
+  uid: 0,
+  authed: false,
+  isVerifide: false,
+  updatePassword: false,
+  guest: false,
+}
+`;

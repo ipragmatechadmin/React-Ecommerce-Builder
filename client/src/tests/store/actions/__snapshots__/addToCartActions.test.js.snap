@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`async addToCartActions actions Creates addToCart on the server 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "cart": Object {
+        "attributes": "{\\"productColor\\":\\"blue\\",\\"productSize\\":\\"L\\",\\"productThumbnail\\":\\"thumbnail\\"}",
+        "buyNow": 1,
+        "productId": 1,
+        "quantity": 1,
+      },
+      "cartId": "40ntegn2ajty9080l",
+    },
+    "type": "PRODUCT_TO_CART",
+  },
+]
+`;

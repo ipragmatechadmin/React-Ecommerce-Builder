@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`async actions Creates LOGIN when login has been done 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "authed": true,
+      "displayName": "Kapil Jain",
+      "email": "kapil.jain40@ipragmatech.com",
+      "uid": 2,
+    },
+    "type": "LOGIN",
+  },
+  Object {
+    "payload": Object {
+      "args": Array [
+        "/",
+      ],
+      "method": "push",
+    },
+    "type": "@@router/CALL_HISTORY_METHOD",
+  },
+]
+`;
+
+exports[`async actions Creates LOGIN when login with wrong Credentials 1`] = `
+Array [
+  Object {
+    "payload": "Please check your email and password again",
+    "type": "SHOW_MESSAGE_GLOBAL",
+  },
+]
+`;
+
+exports[`async actions Creates Signup when user has been done 1`] = `
+Array [
+  Object {
+    "payload": "Bad request",
+    "type": "SHOW_MESSAGE_GLOBAL",
+  },
+]
+`;
+
+exports[`async actions Creates Signup when user has been done 2`] = `
+Array [
+  Object {
+    "payload": "Bad request",
+    "type": "SHOW_MESSAGE_GLOBAL",
+  },
+]
+`;
+
+exports[`async actions Signout the user 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "msg": "User logout successfully",
+      "status": true,
+    },
+    "type": "LOGOUT",
+  },
+  Object {
+    "payload": Object {
+      "args": Array [
+        "/login",
+      ],
+      "method": "push",
+    },
+    "type": "@@router/CALL_HISTORY_METHOD",
+  },
+]
+`;

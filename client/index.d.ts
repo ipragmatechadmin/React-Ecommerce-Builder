@@ -1,0 +1,5 @@
+declare module 'react-paypal-express-checkout'
+declare module 'react-star-rating-component'
+declare module 'react-paginate'
+declare module 'react-image-fallback'
+declare module 'uniqid'

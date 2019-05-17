@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders correctly 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "storeState": Immutable.Map {
+    },
+    }
+  }
+>
+  <Connect(WithStyles(ProductComponent))
+    product={
+      Immutable.Map {
+        productId: 1,
+        name: "Arc d'Triomphe,description:This beautiful and iconic T-shirt will no doubt lead you to your own triumph",
+        price: 14.99,
+        discountedPrice: 0,
+        image: "arc-d-triomphe.gif",
+        image2: "arc-d-triomphe-2.gif",
+        thumbnail: "arc-d-triomphe-thumbnail.gif",
+        display: 0,
+      }
+    }
+  />
+</ContextProvider>
+`;
